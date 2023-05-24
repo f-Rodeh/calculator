@@ -44,7 +44,6 @@ function listen( key ){
     clear();
   }
   display.textContent = `${num1} ${operator} ${num2}`;
-  console.log({num1, operator, num2})
 }
 
 
