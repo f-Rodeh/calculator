@@ -36,7 +36,7 @@ function listen( key ){
 const buttons = document.querySelectorAll('.calculator button');
 buttons.forEach( button => {
   button.addEventListener('click', e => {
-    console.log( e.target.id )
+    listen( e.target.id )
   })
 })
 
