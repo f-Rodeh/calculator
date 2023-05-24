@@ -17,6 +17,12 @@ window.addEventListener('keydown', e => {
 })
 
 // listen to user mouse input (same as keyboard)
+const buttons = document.querySelectorAll('.calculator button');
+buttons.forEach( button => {
+  button.addEventListener('click', e => {
+    console.log(e.target.id)
+  })
+})
 
 // create str variable operator
 // create str variable num1
