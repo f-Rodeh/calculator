@@ -1,6 +1,6 @@
 // listen to user keyboard input
 const OPERATORS = ['+','-','*','/']
-const KEYDOWNS = ['Backspace', 'Enter', 'c']
+const KEYDOWNS = ['Backspace', 'Enter', 'c', '=']
 
 window.addEventListener('keypress', e => {
   if( isNumber( e.key ) || isOperator( e.key )){
@@ -14,6 +14,14 @@ window.addEventListener('keydown', e => {
   }
 })
 
+// listen to user mouse input (same as keyboard)
+const buttons = document.querySelectorAll('.calculator button');
+buttons.forEach( button => {
+  button.addEventListener('click', e => {
+    listen( e.target.id )
+  })
+})
+
 function listen( key ){
   if ( isNumber( key ) ) {
     userInputNumber( key )
@@ -23,22 +31,14 @@ function listen( key ){
   
   if ( key === 'Backspace') {
     userInputBackspace()
-  } else if ( key === 'Enter') {
-    console.log( key )
+  } else if ( key === 'Enter' || key === '=' ) {
+    operate()
   } else if ( key === 'c'){
     clear();
   }
 
   console.log({num1, operator, num2})
 }
-
-// listen to user mouse input (same as keyboard)
-const buttons = document.querySelectorAll('.calculator button');
-buttons.forEach( button => {
-  button.addEventListener('click', e => {
-    listen( e.target.id )
-  })
-})
 
 let operator = '';
 let num1 = '';
@@ -91,3 +91,26 @@ function isOperator( str ){
 
 // create function operate() that defines the operator, uses the function
   // for that operator and displays the result
+function operate(){
+  let result = '';
+  if (!(num1 && num2)) {
+    console.log('not enough arguments')
+    return;
+  }
+  switch (operator) {
+    case '+':
+      result = +num1 + +num2
+      break;
+    case '-':
+      result = +num1 - +num2
+      break;
+    case '*':
+      result = +num1 * +num2
+      break;
+    case '/':
+      result = +num1 / +num2
+      break;
+  }
+  clear();
+  console.log('result: ' + result)
+}
