@@ -3,7 +3,7 @@ let num1 = '';
 let num2 = '';
 
 const display = document.querySelector('.display');
-
+const opDisplay = document.querySelector('.operation')
 
 // listen to user keyboard input
 const OPERATORS = ['+','-','*','/']
@@ -78,10 +78,12 @@ function userInputBackspace(){
   }
 }
 
-function clear( result = ''){
+function clear( result = '', txt = ''){
   operator = '';
   num1 = result;
   num2 = '';
+
+  opDisplay.textContent = txt;
 }
 
 function isNumber( str ){
@@ -114,5 +116,5 @@ function operate(){
       result = +num1 / +num2
       break;
   }
-  clear( result );
+  clear( result, `${num1} ${operator} ${num2}` );
 }
