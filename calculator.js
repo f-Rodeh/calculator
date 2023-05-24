@@ -1,3 +1,10 @@
+let operator = '';
+let num1 = '';
+let num2 = '';
+
+const display = document.querySelector('.display');
+
+
 // listen to user keyboard input
 const OPERATORS = ['+','-','*','/']
 const KEYDOWNS = ['Backspace', 'Enter', 'c', '=']
@@ -36,13 +43,10 @@ function listen( key ){
   } else if ( key === 'c'){
     clear();
   }
-
+  display.textContent = `${num1} ${operator} ${num2}`;
   console.log({num1, operator, num2})
 }
 
-let operator = '';
-let num1 = '';
-let num2 = '';
 
 function userInputNumber( numStr ){
   if( !operator ){  
@@ -75,9 +79,9 @@ function userInputBackspace(){
   }
 }
 
-function clear(){
+function clear( result = ''){
   operator = '';
-  num1 = '';
+  num1 = result;
   num2 = '';
 }
 
@@ -111,6 +115,5 @@ function operate(){
       result = +num1 / +num2
       break;
   }
-  clear();
-  console.log('result: ' + result)
+  clear( result );
 }
