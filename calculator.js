@@ -1,33 +1,42 @@
 // listen to user keyboard input
 const OPERATORS = ['+','-','*','/']
+const KEYDOWNS = ['Backspace', 'Enter', 'c']
 
 window.addEventListener('keypress', e => {
-  if ( e.key.match(/[0-9]/) ) {
-    userInputNumber( e.key )
-    console.log({num1, operator, num2})
-  } else if ( OPERATORS.includes(e.key) ) {
-    userInputOperator( e.key )
-    console.log({num1, operator, num2})
+  if( isNumber( e.key ) || isOperator( e.key )){
+    listen( e.key )
   }
 })
 
 window.addEventListener('keydown', e => {
-  if (e.key === 'Backspace') {
-    userInputBackspace()
-    console.log({num1, operator, num2})
-  } else if (e.key === 'Enter') {
-    console.log(e)
-  } else if (e.key === 'c'){
-    clear();
-    console.log({num1, operator, num2})
+  if( KEYDOWNS.includes( e.key ) ){
+    listen( e.key )
   }
 })
+
+function listen( key ){
+  if ( isNumber( key ) ) {
+    userInputNumber( key )
+  } else if ( isOperator( key ) ) {
+    userInputOperator( key )
+  } 
+  
+  if ( key === 'Backspace') {
+    userInputBackspace()
+  } else if ( key === 'Enter') {
+    console.log( key )
+  } else if ( key === 'c'){
+    clear();
+  }
+
+  console.log({num1, operator, num2})
+}
 
 // listen to user mouse input (same as keyboard)
 const buttons = document.querySelectorAll('.calculator button');
 buttons.forEach( button => {
   button.addEventListener('click', e => {
-    console.log(e.target.id)
+    console.log( e.target.id )
   })
 })
 
@@ -70,6 +79,14 @@ function clear(){
   operator = '';
   num1 = '';
   num2 = '';
+}
+
+function isNumber( str ){
+  return str.match(/[0-9]/) ? true : false;
+}
+
+function isOperator( str ){
+  return OPERATORS.includes( str );
 }
 
 // create function operate() that defines the operator, uses the function
