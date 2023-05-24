@@ -7,11 +7,12 @@ window.addEventListener('keypress', e => {
   } else if ( OPERATORS.includes(e.key) ) {
     console.log(e)
   }
-
 })
 
 window.addEventListener('keydown', e => {
   if (e.key === 'Backspace') {
+    console.log(e)
+  } else if (e.key === 'Enter') {
     console.log(e)
   }
 })
