@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+:root {
+  --bg-color: hsl(0, 0%, 0%);
+  --dark-txt-color: hsl(0, 0%, 10%);
+  --bt-color: hsl(0, 0%, 50%);
+  --txt-color: hsl(0, 0%, 95%);
+  --primary-color: hsl(170, 40%, 20%);
+  --accent-color: hsl(300, 100%, 10%);
+  --accent-bg-color: hsl(300, 15%, 50%);
+  --button-gap: 8px;
+  --radius: 8px;
+  --radius-double: 16px;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Silkscreen', sans-serif;
+  font-size: 28px;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--txt-color);
+}
+
+.calculator {
+  background-color: var(--primary-color);
+  height: fit-content;
+  width: fit-content;
+  padding: 40px ;
+  border-radius: var(--radius-double);
+}
+
+.flex,
+#top-row button{
+  flex: 1;
+}
+
+.row {
+  display: flex;
+  gap: var(--button-gap);
+  margin-bottom: var(--button-gap);
+}
+
+button{
+  padding: 12px;
+  width: 80px;
+  border-radius: var(--radius);
+  background-color: var(--bt-color);
+  color: var(--dark-txt-color);
+}
+
+.display-container {
+  flex-direction: column;
+  flex: 1;
+  background-color: hsl(0, 0%, 7%);
+  min-height: 3em;
+  max-width: 356px;
+  padding: 12px;
+  border-radius: var(--radius);;
+  margin-bottom: 24px;
+  align-items: flex-end;
+}
+
+.operation {
+  flex: 1;
+  width: 100%;
+  text-align: start;
+  word-wrap: break-word;
+  color: hsl(0, 0%, 40%);
+  font-size: medium;
+}
+
+.display {
+  width: 100%;
+  text-align: end;
+  word-wrap: break-word;
+  color: var(--txt-color);
+}
+
+.container {
+  display: flex;
+  height: 96vh;
+  justify-content: center;
+  align-items: center;
+}
+
+button.accent{
+  color: var(--accent-color);
+  border-color: var(--accent-color);
+  border-style: solid;
+  background-color: var(--accent-bg-color);
+}

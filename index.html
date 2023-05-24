@@ -13,28 +13,38 @@
 <body>
   <div class="container">
     <div class="calculator">
-      <div class="display">display</div>
-      <div class="operators"></div>
-        <button id="c"> c </button>
-        <button id="+"> + </button>
-        <button id="-"> - </button>
-        <button id="*"> * </button>
-        <button id="/"> / </button>
-        <button id="Backspace" >delete</button>
-      <div class="numbers">
-        <button id="1"> 1 </button>
-        <button id="2"> 2 </button>
-        <button id="3"> 3 </button>
-        <button id="4"> 4 </button>
-        <button id="5"> 5 </button>
-        <button id="6"> 6 </button>
-        <button id="7"> 7 </button>
-        <button id="8"> 8 </button>
-        <button id="9"> 9 </button>
+      <div class="row display-container">
+        <div class="operation"></div>
+        <div class="display">._.</div>
       </div>
-      <div class="zero-&-return">
-        <button id="0"> 0 </button>
-        <button id="="> = </button>
+      <div class="keypad">
+        <div class="row" id="top-row">
+          <button id="c"> c </button>
+          <button id="Backspace"> <- </button>
+        </div>
+        <div class="row">
+          <button class="accent" id="+"> + </button>
+          <button id="1"> 1 </button>
+          <button id="2"> 2 </button>
+          <button id="3"> 3 </button>
+        </div>
+        <div class="row">
+          <button class="accent" id="-"> - </button>
+          <button id="4"> 4 </button>
+          <button id="5"> 5 </button>
+          <button id="6"> 6 </button>
+        </div>
+        <div class="row">
+          <button class="accent" id="*"> * </button>
+          <button id="7"> 7 </button>
+          <button id="8"> 8 </button>
+          <button id="9"> 9 </button>
+        </div>
+        <div class="row">
+          <button id="/" class="accent"> / </button>
+          <button id="0" class="flex"> 0 </button>
+          <button id="=" class="flex accent"> = </button>
+        </div>
       </div>
     </div>
   </div>
