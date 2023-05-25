@@ -136,11 +136,27 @@ function operate() {
       break;
     case '/':
       if( num2 === '0' ) {
-        return 'Error!';
+        animateErr()
+        return '/( >.<)\\';
       }
       result = +num1 / +num2
       break;
   }
   displayTxt('', `${num1} ${operator} ${num2}`)
   return result;
+}
+
+function animateErr(){
+  let i = 0;
+  const limit = 6
+  const timeoutMs = 200;
+  let interval = setInterval(() => {
+    if ( i >= limit ){ 
+      display.textContent = 'Error!'
+      clearInterval( interval );
+    } else if ( i % 2 === 0 ){
+      display.textContent = '/( >.<)\\'
+    } else display.textContent = '/(>.< )\\';
+    i++
+  }, timeoutMs)
 }
