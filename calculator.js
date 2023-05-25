@@ -125,6 +125,10 @@ function operate() {
       result = +num1 * +num2
       break;
     case '/':
+      if( num2 === '0' ) {
+        clear('error!')
+        return
+      }
       result = +num1 / +num2
       break;
   }
