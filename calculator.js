@@ -13,8 +13,8 @@ const NUMBERS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 window.addEventListener('keydown', e => {
   if (NUMBERS.includes(e.key) || isOperator(e.key) || KEYDOWNS.includes(e.key)) {
     listen(e.key)
-
-    const keyBt = document.getElementById(e.key);
+    const id = e.key === 'Enter' ? '=' : e.key;
+    const keyBt = document.getElementById(id);
     const cls = keyBt.classList.contains('accent') 
       ? 'accent-active' 
       : 'active';
@@ -24,8 +24,8 @@ window.addEventListener('keydown', e => {
 
 window.addEventListener('keyup', e => {
   if (NUMBERS.includes(e.key) || isOperator(e.key) || KEYDOWNS.includes(e.key)) {
-
-    const keyBt = document.getElementById(e.key);
+    const id = e.key === 'Enter' ? '=' : e.key;
+    const keyBt = document.getElementById(id);
     const cls = keyBt.classList.contains('accent') 
       ? 'accent-active' 
       : 'active';
@@ -51,24 +51,35 @@ function listen(key) {
   if (key === 'Backspace') {
     userInputBackspace()
   } else if (key === 'Enter' || key === '=') {
-    operate()
+    num1 = operate();
+    operator = '';
+    num2 = '';
   } else if (key === 'c') {
-    clear();
+    displayTxt();
   }
   display.textContent = `${num1} ${operator} ${num2}`;
 }
 
 
 function userInputNumber(numStr) {
+  if (isNaN(+num1)) {
+    num1 = numStr
+    return;
+  }
   if (!operator) {
     num1 += numStr; // concat to num1
   } else {
     num2 += numStr; // concat to num2
   }
+
 }
 
 function userInputOperator(str) {
   if (!num1) num1 = '0';
+  if ( num2 ){
+    num1 = operate();
+    num2 = ''
+  }
   operator = str;
 }
 
@@ -90,7 +101,7 @@ function userInputBackspace() {
   }
 }
 
-function clear(result = '', txt = '') {
+function displayTxt(result = '', txt = '') {
   operator = '';
   num1 = result;
   num2 = '';
@@ -111,9 +122,8 @@ function isOperator(str) {
 function operate() {
   let result = '';
   if (!(num1 && num2)) {
-    console.log('not enough arguments')
-    return;
-  }
+    return num1 ? num1 : '';
+  } 
   switch (operator) {
     case '+':
       result = +num1 + +num2
@@ -126,11 +136,11 @@ function operate() {
       break;
     case '/':
       if( num2 === '0' ) {
-        clear('error!')
-        return
+        return 'Error!';
       }
       result = +num1 / +num2
       break;
   }
-  clear(result, `${num1} ${operator} ${num2}`);
+  displayTxt('', `${num1} ${operator} ${num2}`)
+  return result;
 }
