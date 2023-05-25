@@ -8,6 +8,7 @@
   --txt-color: hsl(0, 0%, 95%);
   --primary-color: hsl(170, 40%, 20%);
   --accent-color: hsl(300, 100%, 10%);
+  --accent-light: hsl(300, 100%, 80%);
   --accent-bg-color: hsl(300, 15%, 50%);
   --button-gap: 8px;
   --radius: 8px;
@@ -45,11 +46,23 @@ body {
 }
 
 button{
+  border-top-color:hsl(0, 0%, 80%);
+  border-left-color:hsl(0, 0%, 80%);
   padding: 12px;
   width: 80px;
   border-radius: var(--radius);
   background-color: var(--bt-color);
   color: var(--dark-txt-color);
+}
+
+button:active {
+  transition: all 50ms;
+  --bt-color: hsl(0, 0%, 30%)
+}
+
+.active {
+  transition: all 50ms;
+  --bt-color: hsl(0, 0%, 30%)
 }
 
 .display-container {
@@ -91,7 +104,26 @@ button{
 
 button.accent{
   color: var(--accent-color);
-  border-color: var(--accent-color);
+  border-top-color:var(--accent-light);
+  border-left-color:var(--accent-light);
+  border-bottom-color: var(--accent-color);
+  border-right-color: var(--accent-color);
   border-style: solid;
   background-color: var(--accent-bg-color);
+}
+
+button.accent:active {
+  --accent-bg-color: hsl(300, 15%, 30%);
+  border-top-color:var(--accent-color);
+  border-left-color:var(--accent-color);
+  border-bottom-color: var(--accent-light);
+  border-right-color: var(--accent-light);
+}
+
+.accent-active {
+  --accent-bg-color: hsl(300, 15%, 30%);
+  border-top-color:var(--accent-color);
+  border-left-color:var(--accent-color);
+  border-bottom-color: var(--accent-light);
+  border-right-color: var(--accent-light);
 }
